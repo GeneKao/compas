@@ -38,6 +38,7 @@ def mesh_quads_to_triangles(mesh, check_angles=False):
             mesh.split_face(fkey, b, d)
 
 
+# this can be a lot faster with local custom mesh
 def delaunay_from_points(points, boundary=None, holes=None, tiny=1e-12):
     """Computes the delaunay triangulation for a list of points.
 
