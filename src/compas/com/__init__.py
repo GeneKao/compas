@@ -37,6 +37,7 @@ ssh
     SSH
 
 """
+from __future__ import print_function, division, absolute_import
 
 
 class Process(object):
@@ -51,8 +52,4 @@ from .matlab_ import *
 from .ssh import *
 from .rhino import *
 
-from .matlab_ import __all__ as a
-from .ssh import __all__ as b
-from .rhino import __all__ as c
-
-__all__ = a + b + c
+__all__ = [name for name in dir() if not name.startswith('_')]

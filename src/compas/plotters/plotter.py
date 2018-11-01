@@ -13,12 +13,12 @@ import matplotlib.pyplot as plt
 
 from matplotlib.patches import Circle
 
-from compas.plotters.core.drawing import create_axes_xy
-from compas.plotters.core.drawing import draw_xpoints_xy
-from compas.plotters.core.drawing import draw_xlines_xy
-from compas.plotters.core.drawing import draw_xpolylines_xy
-from compas.plotters.core.drawing import draw_xpolygons_xy
-from compas.plotters.core.drawing import draw_xarrows_xy
+from ._core.drawing import create_axes_xy
+from ._core.drawing import draw_xpoints_xy
+from ._core.drawing import draw_xlines_xy
+from ._core.drawing import draw_xpolylines_xy
+from ._core.drawing import draw_xpolygons_xy
+from ._core.drawing import draw_xarrows_xy
 
 
 __all__ = ['Plotter']
@@ -489,7 +489,7 @@ class Plotter(object):
 
         See Also
         --------
-        :func:`compas.plotters.core.draw_xpoints_xy`
+        :func:`._core.draw_xpoints_xy`
 
         Examples
         --------
@@ -522,7 +522,7 @@ class Plotter(object):
 
         See Also
         --------
-        :func:`compas.plotters.core.draw_xlines_xy`
+        :func:`._core.draw_xlines_xy`
 
         """
         return draw_xlines_xy(lines, self.axes)
@@ -554,7 +554,7 @@ class Plotter(object):
 
         See Also
         --------
-        :func:`compas.plotters.core.draw_xpolygons_xy`
+        :func:`._core.draw_xpolygons_xy`
 
         """
         return draw_xpolygons_xy(polygons, self.axes)
@@ -583,7 +583,7 @@ class Plotter(object):
 
         See Also
         --------
-        :func:`compas.plotters.core.draw_xarrows_xy`
+        :func:`._core.draw_xarrows_xy`
 
         """
         return draw_xarrows_xy(arrows, self.axes)

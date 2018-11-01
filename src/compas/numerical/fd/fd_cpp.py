@@ -5,14 +5,10 @@ from __future__ import print_function
 import os
 import compas
 
-try:
-    import ctypes
+import ctypes
 
-    from compas.interop.cpp.xdarray import Array2D
-    from compas.interop.cpp.xdarray import Array1D
-
-except (ImportError, SystemError):
-    compas.raise_if_not_ironpython()
+from compas.interop.cpp.xdarray import Array2D
+from compas.interop.cpp.xdarray import Array1D
 
 HERE = os.path.dirname(__file__)
 

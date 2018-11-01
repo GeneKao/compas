@@ -8,10 +8,51 @@ import sys
 
 PY3 = sys.version_info[0] == 3
 system = sys.platform
+version = sys.version.lower()
 
 # IronPython support (OMG)
 if 'ironpython' in sys.version.lower() and os.name == 'nt':
     system = 'win32'
+
+
+__all__ = [
+    'absjoin',
+    'create_symlink',
+    'remove_symlink',
+    'user_data_dir',
+    'is_windows',
+    'is_linux',
+    'is_mono',
+    'is_ironpython',
+    'raise_if_ironpython',
+    'raise_if_not_ironpython'
+]
+
+
+def is_windows():
+    return os.name == 'nt'
+
+
+def is_linux():
+    return os.name == 'posix'
+
+
+def is_mono():
+    return 'mono' in version
+
+
+def is_ironpython():
+    return 'ironpython' in version
+
+
+def raise_if_not_ironpython():
+    if not is_ironpython():
+        raise
+
+
+def raise_if_ironpython():
+    if is_ironpython():
+        raise
 
 
 def absjoin(*parts):
@@ -202,11 +243,3 @@ if system == "win32":
             _get_win_folder = _get_win_folder_with_ctypes
         except ImportError:
             _get_win_folder = _get_win_folder_from_registry
-
-
-__all__ = [
-    'absjoin',
-    'create_symlink',
-    'remove_symlink',
-    'user_data_dir',
-]

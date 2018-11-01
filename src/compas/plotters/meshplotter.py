@@ -14,7 +14,7 @@ from compas.utilities import valuedict
 from compas.utilities import color_to_rgb
 from compas.utilities import pairwise
 
-from compas.plotters.plotter import Plotter
+from .plotter import Plotter
 
 
 __all__ = ['MeshPlotter']

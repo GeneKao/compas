@@ -17,9 +17,9 @@ try:
 except ImportError:
     compas.raise_if_not_ironpython()
 
-from compas.numerical.linalg import normrow
-from compas.numerical.linalg import normalizerow
-from compas.numerical.linalg import rot90
+from .linalg import normrow
+from .linalg import normalizerow
+from .linalg import rot90
 
 
 __all__ = [

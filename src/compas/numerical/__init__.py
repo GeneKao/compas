@@ -114,36 +114,22 @@ Utilities
 
 
 """
-from __future__ import absolute_import
+from __future__ import print_function, division, absolute_import
 
 from .linalg import *
 from .matrices import *
 from .operators import *
 from .utilities import *
 
-from .solvers import *
-from .algorithms import *
-
+from .descent import *
+from .devo import *
 from .dr import *
 from .drx import *
 from .fd import *
+from .ga import *
+from .lma import *
+from .mma import *
+from .pca import *
+from .topop import *
 
-from . import linalg
-from . import matrices
-from . import operators
-from . import utilities
-
-from . import solvers
-from . import algorithms
-
-from . import dr
-from . import drx
-from . import fd
-
-__all__ = []
-
-__all__ += linalg.__all__ + matrices.__all__ + operators.__all__ + utilities.__all__
-__all__ += solvers.__all__
-__all__ += algorithms.__all__
-__all__ += dr.__all__ + drx.__all__
-__all__ += fd.__all__
+__all__ = [name for name in dir() if not name.startswith('_')]

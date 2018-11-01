@@ -11,7 +11,8 @@ from compas.files.obj import OBJ
 from compas.geometry import centroid_points
 
 from compas.datastructures import Datastructure
-from compas.datastructures import Mesh
+
+from compas.datastructures.mesh import Mesh
 
 from compas.datastructures._mixins import VertexAttributesManagement
 from compas.datastructures._mixins import VertexHelpers

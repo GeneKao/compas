@@ -52,9 +52,6 @@ be used for the representation of subdivided/partitioned polyhedra.
 
 """
 
-from __future__ import print_function
-
-
 class Datastructure(object):
     pass
 
@@ -63,8 +60,6 @@ from .network import *
 from .mesh import *
 from .volmesh import *
 
-from .network import __all__ as a
-from .mesh import __all__ as c
-from .volmesh import __all__ as d
 
-__all__ = a + c + d
+__all__ = [name for name in dir() if not name.startswith('_')]
+

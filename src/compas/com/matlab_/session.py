@@ -3,6 +3,9 @@ from __future__ import absolute_import
 from __future__ import division
 
 
+__all__ = ['MatlabSession']
+
+
 class MatlabSessionError(Exception):
     def __init__(self, message=None):
         if not message:

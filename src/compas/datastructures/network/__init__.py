@@ -1,7 +1,5 @@
-from __future__ import absolute_import
+from __future__ import print_function, division, absolute_import
 
 from .network import *
 
-from . import network
-
-__all__ = network.__all__
+__all__ = [name for name in dir() if not name.startswith('_')]

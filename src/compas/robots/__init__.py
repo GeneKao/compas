@@ -112,13 +112,9 @@ the processing of these resources.
     LocalPackageMeshLoader
 
 """
-
-from __future__ import absolute_import
+from __future__ import print_function, division, absolute_import
 
 from .model import *
 from .resources import *
 
-from . import model
-from . import resources
-
-__all__ = model.__all__ + resources.__all__
+__all__ = [name for name in dir() if not name.startswith('_')]

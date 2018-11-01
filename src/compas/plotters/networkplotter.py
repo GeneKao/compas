@@ -5,7 +5,8 @@ from __future__ import division
 from matplotlib.patches import Circle
 
 from compas.utilities import valuedict
-from compas.plotters.plotter import Plotter
+
+from .plotter import Plotter
 
 try:
     basestring

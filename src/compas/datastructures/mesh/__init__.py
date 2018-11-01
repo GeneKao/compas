@@ -1,7 +1,5 @@
-from __future__ import absolute_import
+from __future__ import print_function, division, absolute_import
 
-from .mesh import *
+from ._mesh import *
 
-from . import mesh
-
-__all__ = mesh.__all__
+__all__ = [name for name in dir() if not name.startswith('_')]

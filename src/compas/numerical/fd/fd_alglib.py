@@ -12,10 +12,7 @@ from compas.geometry import cross_vectors
 from compas.geometry import length_vector
 from compas.geometry import centroid_points
 
-try:
-    from compas.numerical.alglib.core import xalglib
-except ImportError:
-    compas.raise_if_ironpython()
+from compas.numerical._alglib._core import xalglib
 
 
 __all__ = ['mesh_fd_alglib']
