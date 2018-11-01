@@ -2,18 +2,13 @@ from __future__ import print_function
 from __future__ import absolute_import
 from __future__ import division
 
-import compas
 import os
 
-try:
-    import ctypes
-    from ctypes import *
+import ctypes
+from ctypes import *
 
-    from compas.interop.cpp.xdarray import Array1D
-    from compas.interop.cpp.xdarray import Array2D
-
-except (ImportError, SystemError):
-    compas.raise_if_not_ironpython()
+from compas.interop.cpp.xdarray import Array1D
+from compas.interop.cpp.xdarray import Array2D
 
 
 HERE = os.path.dirname(__file__)

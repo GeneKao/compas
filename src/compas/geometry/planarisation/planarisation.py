@@ -8,7 +8,7 @@ from compas.geometry import centroid_points
 from compas.geometry import distance_point_point
 from compas.geometry import distance_line_line
 
-from compas.geometry.algorithms.bestfit import bestfit_plane
+from compas.geometry import bestfit_plane
 
 from compas.utilities import window
 
@@ -240,10 +240,6 @@ def mesh_planarize_faces(mesh, fixed=None, kmax=100, callback=None, callback_arg
 
         if callback:
             callback(k, callback_args)
-
-
-def mesh_planarize_faces_numpy(mesh, fixed=None, kmax=100, callback=None, callback_args=None):
-    pass
 
 
 # ==============================================================================

@@ -307,12 +307,27 @@ from .angles import *
 from .average import *
 from .normals import *
 from .queries import *
-from .intersections import *
 from .size import *
-from .transformations import *
+from .intersections import *
+
 from .objects import *
 from .spatial import *
+
+from .transformations import *
 from .xforms import *
-from .algorithms import *
+
+from .bbox import *
+from .bestfit import *
+from .boolean import *
+from .hull import *
+from .interpolation import *
+from .isolines import *
+from .offset import *
+from .planarisation import *
+from .smoothing import *
+
+# from .subdivision import *
+# from .triangulation import *
+
 
 __all__ = [name for name in dir() if not name.startswith('_')]

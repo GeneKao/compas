@@ -2,20 +2,14 @@ from __future__ import print_function
 from __future__ import absolute_import
 from __future__ import division
 
-import compas
+from numpy import array
+from numpy import asarray
+from numpy import argmax
+from numpy import argmin
+from numpy import dot
+from numpy import ptp
 
-try:
-    from numpy import array
-    from numpy import asarray
-    from numpy import argmax
-    from numpy import argmin
-    from numpy import dot
-    from numpy import ptp
-
-    from scipy.spatial import ConvexHull
-
-except ImportError:
-    compas.raise_if_not_ironpython()
+from scipy.spatial import ConvexHull
 
 from compas.geometry import local_axes
 from compas.geometry import local_coords_numpy
