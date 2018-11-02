@@ -4,11 +4,11 @@ from __future__ import division
 
 
 __all__ = [
-    'VertexCoordinatesDescriptors',
+    'VertexCoordinates',
 ]
 
 
-class VertexCoordinatesDescriptors(object):
+class VertexCoordinates(object):
 
     __module__ = 'compas.datastructures._mixins'
 

@@ -3,5 +3,6 @@ networkx
 numba
 numpy
 Pillow
+scikit-image
 scipy
 sympy

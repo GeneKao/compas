@@ -326,7 +326,6 @@ from .offset import *
 from .planarisation import *
 from .smoothing import *
 
-# from .subdivision import *
 # from .triangulation import *
 
 

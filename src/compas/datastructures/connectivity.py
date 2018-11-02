@@ -7,7 +7,7 @@ from compas.topology import breadth_first_traverse
 
 
 __all__ = [
-    'connected_components',
+    'mesh_connected_components',
     'mesh_is_connected',
     'network_is_connected',
 ]
@@ -41,6 +41,10 @@ def connected_components(adjacency):
         tovisit -= visited
         components.append(list(visited))
     return components
+
+
+def mesh_connected_components(mesh):
+    return connected_components(mesh.adjacency)
 
 
 def mesh_is_connected(mesh):

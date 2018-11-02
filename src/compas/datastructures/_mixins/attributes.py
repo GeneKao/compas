@@ -6,13 +6,13 @@ from copy import deepcopy
 
 
 __all__ = [
-    'VertexAttributesManagement',
-    'EdgeAttributesManagement',
-    'FaceAttributesManagement',
+    'VertexAttributes',
+    'EdgeAttributes',
+    'FaceAttributes',
 ]
 
 
-class VertexAttributesManagement(object):
+class VertexAttributes(object):
     """Mix-in methods for working getting, setting, and updating vertex attributes."""
 
     __module__ = 'compas.datastructures._mixins'
@@ -258,7 +258,7 @@ class VertexAttributesManagement(object):
         return [[self.get_vertex_attribute(key, name, value) for name, value in temp] for key in keys]
 
 
-class EdgeAttributesManagement(object):
+class EdgeAttributes(object):
     """Mix-in methods for setting, getting, and updating edge attributes."""
 
     __module__ = 'compas.datastructures._mixins'
@@ -526,7 +526,7 @@ class EdgeAttributesManagement(object):
         return [[self.get_edge_attribute(key, name, value) for name, value in temp] for key in keys]
 
 
-class FaceAttributesManagement(object):
+class FaceAttributes(object):
     """Mix-in methods for setting, getting, and updating face attributes."""
 
     __module__ = 'compas.datastructures._mixins'

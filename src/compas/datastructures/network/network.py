@@ -18,12 +18,12 @@ from compas.geometry import subtract_vectors
 
 from compas.datastructures import Datastructure
 
-from compas.datastructures._mixins import VertexAttributesManagement
+from compas.datastructures._mixins import VertexAttributes
 from compas.datastructures._mixins import VertexHelpers
 from compas.datastructures._mixins import VertexMappings
 from compas.datastructures._mixins import VertexFilter
 
-from compas.datastructures._mixins import EdgeAttributesManagement
+from compas.datastructures._mixins import EdgeAttributes
 from compas.datastructures._mixins import EdgeHelpers
 from compas.datastructures._mixins import EdgeGeometry
 from compas.datastructures._mixins import EdgeMappings
@@ -59,8 +59,8 @@ class Network(FromToJson,
               EdgeMappings,
               VertexFilter,
               EdgeFilter,
-              EdgeAttributesManagement,
-              VertexAttributesManagement,
+              EdgeAttributes,
+              VertexAttributes,
               Datastructure):
     """Definition of a network.
 

@@ -6,11 +6,11 @@ from compas.utilities import geometric_key
 
 
 __all__ = [
-    'mesh_cull_duplicate_vertices'
+    'mesh_delete_duplicate_vertices'
 ]
 
 
-def mesh_cull_duplicate_vertices(mesh, precision=None):
+def mesh_delete_duplicate_vertices(mesh, precision=None):
     """Cull all duplicate vertices of a mesh and sanitize affected faces.
 
     Parameters
@@ -73,7 +73,7 @@ if __name__ == "__main__":
     print("Original mesh:")
     print(mesh)
 
-    _mesh_cull_duplicate_vertices(mesh)
+    mesh_delete_duplicate_vertices(mesh)
 
     print("Mesh with duplicate vertices deleted:")
     print(mesh)

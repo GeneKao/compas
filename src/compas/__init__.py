@@ -35,6 +35,8 @@ PY3 = sys.version_info[0] == 3
 
 PRECISION = '3f'
 
+IPY = is_ironpython()
+
 
 __author__    = 'Tom Van Mele and many others (see CONTRIBUTORS.md)'
 __copyright__ = 'Copyright 2014-2018 - Block Research Group, ETH Zurich'

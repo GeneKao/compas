@@ -51,6 +51,8 @@ be used for the representation of subdivided/partitioned polyhedra.
     VolMesh
 
 """
+from __future__ import print_function, division, absolute_import
+
 
 class Datastructure(object):
     pass
@@ -60,6 +62,7 @@ from .network import *
 from .mesh import *
 from .volmesh import *
 
+from .connectivity import *
+
 
 __all__ = [name for name in dir() if not name.startswith('_')]
-

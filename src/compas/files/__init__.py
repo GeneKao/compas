@@ -89,6 +89,7 @@ from .amf  import *
 from .dxf  import *
 from .las  import *
 from .obj  import *
+from .off  import *
 from .ply  import *
 from .stl  import *
 from .urdf import *

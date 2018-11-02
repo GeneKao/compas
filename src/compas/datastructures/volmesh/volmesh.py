@@ -14,16 +14,16 @@ from compas.datastructures import Datastructure
 
 from compas.datastructures.mesh import Mesh
 
-from compas.datastructures._mixins import VertexAttributesManagement
+from compas.datastructures._mixins import VertexAttributes
 from compas.datastructures._mixins import VertexHelpers
-from compas.datastructures._mixins import VertexCoordinatesDescriptors
+from compas.datastructures._mixins import VertexCoordinates
 from compas.datastructures._mixins import VertexFilter
 
-from compas.datastructures._mixins import EdgeAttributesManagement
+from compas.datastructures._mixins import EdgeAttributes
 from compas.datastructures._mixins import EdgeHelpers
 from compas.datastructures._mixins import EdgeGeometry
 
-from compas.datastructures._mixins import FaceAttributesManagement
+from compas.datastructures._mixins import FaceAttributes
 from compas.datastructures._mixins import FaceHelpers
 
 from compas.datastructures._mixins import FromToData
@@ -56,10 +56,10 @@ class VolMesh(FromToData,
               EdgeHelpers,
               VertexHelpers,
               EdgeGeometry,
-              VertexCoordinatesDescriptors,
-              FaceAttributesManagement,
-              EdgeAttributesManagement,
-              VertexAttributesManagement,
+              VertexCoordinates,
+              FaceAttributes,
+              EdgeAttributes,
+              VertexAttributes,
               Datastructure,
               VertexFilter):
     """Class for working with volumetric meshes.

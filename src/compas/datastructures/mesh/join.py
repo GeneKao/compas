@@ -4,7 +4,7 @@ from __future__ import division
 
 from compas.utilities import geometric_key
 
-from compas.geometry import mesh_cull_duplicate_vertices
+from compas.datastructures.mesh.clean import mesh_delete_duplicate_vertices
 
 from copy import deepcopy
 
@@ -13,19 +13,19 @@ __all__ = [
 ]
 
 
-def meshes_join(meshes, cull_duplicates=False, precision='3f'):
+def meshes_join(meshes, delete_duplicates=False, precision='3f'):
     """Join multiple meshes. These meshes are usually assumed
     to be mesh patches that nicely align along their boundaries. 
 
     Parameters
     ----------
-    meshes : Meshes
+    meshes : list of Mesh
         A list of mesh objects.
-    cull_duplicates: Boolean
-        True if resulting duplicate vertices should be deleted
-        False otherwise
+    delete_duplicates: bool
+        True, if resulting duplicate vertices should be deleted.
+        False, otherwise.
+
     """
-    
     count = 0
     mesh_all = deepcopy(meshes[0])
     mesh_all.clear()
@@ -44,8 +44,8 @@ def meshes_join(meshes, cull_duplicates=False, precision='3f'):
             new_vertices = [key_map[key] for key in vertices]
             mesh_all.add_face(new_vertices)
     
-    if cull_duplicates:
-        mesh_cull_duplicate_vertices(mesh_all, precision)
+    if delete_duplicates:
+        mesh_deletes_duplicate_vertices(mesh_all, precision)
 
     return mesh_all
 
