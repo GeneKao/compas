@@ -19,6 +19,33 @@ __all__ = [
 ]
 
 
+def mesh_isolines_numpy(mesh, attr_name, N=50):
+    """Compute the isolines of a specified attribute of the vertices of a mesh.
+
+    Parameters
+    ----------
+    mesh : Mesh
+        A mesh object.
+    attr_name : str
+        The name of the vertex attribute.
+    N : int, optional
+        The density of the isolines.
+        Default is ``50``.
+
+    Returns
+    -------
+    tuple
+        A tuple of a list of levels and a list of isolines.
+
+        The list of levels contains the z-values at each of the isolines.
+        Each isoline is a list of paths, and each path is a list polygons.
+
+    """
+    xy = [mesh.vertex_coordinates(key, 'xy') for key in mesh.vertices()]
+    s = [mesh.vertex[key][attr_name] for key in mesh.vertices()]
+    return scalarfield_contours_numpy(xy, s, N)
+
+
 def mesh_contours_numpy(mesh, levels=None, density=100):
     """Compute the contours of the mesh.
 
