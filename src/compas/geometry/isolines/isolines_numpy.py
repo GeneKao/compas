@@ -12,29 +12,11 @@ import matplotlib.pyplot as plt
 
 
 __all__ = [
-    'scalarfield_contours_numpy',
-    'mesh_contours_numpy',
-    'mesh_isolines_numpy',
+    'scalarfield_isolines_numpy',
 ]
 
 
-# def trimesh_descent(trimesh):
-#     """"""
-#     vertices, faces = trimesh.to_vertices_and_faces()
-#     V = array(vertices)
-#     F = array(faces)
-#     G = grad(V, F)
-#     sfield = V[:, 2].reshape((-1, 1))
-#     vfield = - G.dot(sfield)
-#     return vfield.reshape((-1, 3), order='F').tolist()
-
-
-# ==============================================================================
-# contours
-# ==============================================================================
-
-
-def scalarfield_contours_numpy(xy, s, levels=50, density=100):
+def scalarfield_isolines_numpy(xy, s, levels=50, density=100):
     r"""Compute the contour lines of a scalarfield.
 
     Parameters
@@ -122,74 +104,6 @@ def scalarfield_contours_numpy(xy, s, levels=50, density=100):
     return levels, contours
 
 
-def mesh_contours_numpy(mesh, N=50):
-    """Compute the contours of the mesh.
-
-    Notes
-    -----
-    The contours are defined as the isolines of the z-coordinates of the vertices
-    of the mesh.
-
-    Parameters
-    ----------
-    mesh : Mesh
-        The mesh object.
-    N : int, optional
-        The density of the contours.
-        Default is ``50``.
-
-    Returns
-    -------
-    tuple
-        A tuple of a list of levels and a list of contours.
-
-        The list of levels contains the z-values at each of the contours.
-        Each contour is a list of paths, and each path is a list polygons.
-
-    Examples
-    --------
-    .. code-block:: python
-
-        import compas
-        from compas.datastructures import Mesh
-        from compas.geometry import mesh_contours_numpy
-
-        mesh = Mesh.from_obj(compas.get('hypar.obj'))
-        print(mesh_contours_numpy(mesh))
-
-    """
-    xy = [mesh.vertex_coordinates(key, 'xy') for key in mesh.vertices()]
-    z = [mesh.get_vertex_attribute(key, 'z') for key in mesh.vertices()]
-    return scalarfield_contours_numpy(xy, z, N)
-
-
-def mesh_isolines_numpy(mesh, attr_name, N=50):
-    """Compute the isolines of a specified attribute of the vertices of a mesh.
-
-    Parameters
-    ----------
-    mesh : Mesh
-        A mesh object.
-    attr_name : str
-        The name of the vertex attribute.
-    N : int, optional
-        The density of the isolines.
-        Default is ``50``.
-
-    Returns
-    -------
-    tuple
-        A tuple of a list of levels and a list of isolines.
-
-        The list of levels contains the z-values at each of the isolines.
-        Each isoline is a list of paths, and each path is a list polygons.
-
-    """
-    xy = [mesh.vertex_coordinates(key, 'xy') for key in mesh.vertices()]
-    s = [mesh.vertex[key][attr_name] for key in mesh.vertices()]
-    return scalarfield_contours_numpy(xy, s, N)
-
-
 # ==============================================================================
 # Main
 # ==============================================================================
@@ -200,7 +114,7 @@ if __name__ == "__main__":
     from compas.datastructures import Mesh
     from compas.geometry import centroid_points
     from compas.geometry import distance_point_point
-    from compas.geometry import scalarfield_contours_numpy
+    from compas.geometry import scalarfield_isolines_numpy
 
     mesh = Mesh.from_obj(compas.get('faces.obj'))
 
@@ -210,7 +124,7 @@ if __name__ == "__main__":
 
     xy = [point[0:2] for point in points]
 
-    levels, contours = scalarfield_contours_numpy(xy, distances)
+    levels, contours = scalarfield_isolines_numpy(xy, distances)
 
     # xy = [mesh.vertex_coordinates(key, 'xy') for key in mesh.vertices()]
     # z = [mesh.get_vertex_attribute(key, 'z') for key in mesh.vertices()]

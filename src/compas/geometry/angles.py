@@ -51,7 +51,12 @@ def angle_vectors(u, v, deg=False):
     >>> angle_vectors([0.0, 1.0, 0.0], [1.0, 0.0, 0.0])
 
     """
-    a = dot_vectors(u, v) / (length_vector(u) * length_vector(v))
+    l = length_vector(u) * length_vector(v)
+
+    if l == 0:
+        return 0
+
+    a = dot_vectors(u, v) / l
     a = max(min(a, 1), -1)
 
     if deg:
@@ -82,8 +87,14 @@ def angle_vectors_xy(u, v, deg=False):
     >>>
 
     """
-    a = dot_vectors_xy(u, v) / (length_vector_xy(u) * length_vector_xy(v))
+    l = length_vector_xy(u) * length_vector_xy(v)
+
+    if l == 0:
+        return 0
+
+    a = dot_vectors_xy(u, v) / l
     a = max(min(a, 1), -1)
+
     if deg:
         return degrees(acos(a))
     return acos(a)

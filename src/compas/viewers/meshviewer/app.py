@@ -70,25 +70,27 @@ if __name__ == '__main__':
     from compas.geometry import matrix_from_translation
 
 
-    class Mesh(Mesh):
+    # class Mesh(Mesh):
 
-        def apply_xform(self, M):
-            key_index = self.key_index()
-            points = self.get_vertices_attributes('xyz')
-            points = transform_points(points, M)
-            for key, attr in self.vertices(True):
-                index = key_index[key]
-                x, y, z = points[index]
-                attr['x'] = x
-                attr['y'] = y
-                attr['z'] = z
+    #     def apply_xform(self, M):
+    #         key_index = self.key_index()
+    #         points = self.get_vertices_attributes('xyz')
+    #         points = transform_points(points, M)
+    #         for key, attr in self.vertices(True):
+    #             index = key_index[key]
+    #             x, y, z = points[index]
+    #             attr['x'] = x
+    #             attr['y'] = y
+    #             attr['z'] = z
 
 
-    t = [3, 0, 0]
-    M = matrix_from_translation(t)
+    # t = [3, 0, 0]
+    # M = matrix_from_translation(t)
 
-    mesh = Mesh.from_polyhedron(6)
-    mesh.apply_xform(M)
+    # mesh = Mesh.from_polyhedron(6)
+    # mesh.apply_xform(M)
+
+    mesh = Mesh.from_obj(compas.get('models/camel-poses/camel-01.obj'))    
 
     viewer = MeshViewer()
     viewer.mesh = mesh

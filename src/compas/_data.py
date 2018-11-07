@@ -17,7 +17,7 @@ APPDATA = user_data_dir('COMPAS', 'compas-dev', roaming=True)
 APPTEMP = absjoin(APPDATA, 'temp')
 
 
-__all__ = ['get', 'get_bunny', ]
+# __all__ = ['get', 'get_bunny', ]
 
 
 def get(filename):
@@ -123,8 +123,8 @@ def get_bunny(localstorage=None):
     if not os.access(localstorage, os.W_OK):
         raise Exception('Local storage location is not writable: {}'.format(localstorage))
 
-    bunny = compas._os.absjoin(localstorage, 'bunny/reconstruction/bun_zipper.ply')
-    destination = compas._os.absjoin(localstorage, 'bunny.tar.gz')
+    bunny = absjoin(localstorage, 'bunny/reconstruction/bun_zipper.ply')
+    destination = absjoin(localstorage, 'bunny.tar.gz')
 
     if not os.path.exists(bunny):
         url = 'http://graphics.stanford.edu/pub/3Dscanrep/bunny.tar.gz'

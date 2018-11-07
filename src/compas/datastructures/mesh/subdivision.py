@@ -7,7 +7,7 @@ from math import pi
 
 from compas.geometry import centroid_points
 
-from ._mesh import Mesh
+from compas.datastructures.mesh._mesh import Mesh
 
 
 __all__ = [

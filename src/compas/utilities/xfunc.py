@@ -363,10 +363,11 @@ class XFunc(object):
 
         while process.poll() is None:
             line = process.stdout.readline().strip()
-            if self.callback:
-                self.callback(line, self.callback_args)
-            if self.verbose:
-                print(line)
+            if line:
+                if self.callback:
+                    self.callback(line, self.callback_args)
+                if self.verbose:
+                    print(line)
 
         if self.serializer == 'json':
             with open(self.opath, 'r') as fo:

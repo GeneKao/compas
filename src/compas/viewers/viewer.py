@@ -22,14 +22,14 @@ from functools import partial
 import compas
 
 from compas.datastructures import Mesh
+from compas.datastructures import mesh_flip_cycles
+from compas.datastructures import mesh_subdivide
 
 from compas.geometry import centroid_points
+
 from compas.utilities import hex_to_rgb
 from compas.utilities import flatten
 from compas.utilities import pairwise
-
-from compas.topology import mesh_flip_cycles
-from compas.topology import mesh_subdivide
 
 from compas.viewers.core import Camera
 from compas.viewers.core import Mouse
@@ -365,8 +365,11 @@ class Viewer(App):
 
 if __name__ == '__main__':
 
+    import compas
+
     viewer = Viewer()
 
-    viewer.mesh = Mesh.from_polyhedron(6)
+    viewer.mesh = Mesh.from_obj(compas.get('models/head-poses/head-reference.obj'))
+    # viewer.mesh = Mesh.from_obj(compas.get('models/cat-poses/cat-reference.obj'))
 
     viewer.show()

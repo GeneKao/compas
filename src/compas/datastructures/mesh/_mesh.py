@@ -1479,16 +1479,19 @@ class Mesh(FromToPickle,
                     continue
 
                 edges.add((u, v))
-                edges.add((v, u))
+
+                if u != v:
+                    edges.add((v, u))
 
                 if (u, v) not in self.edgedata:
                     self.edgedata[u, v] = self.default_edge_attributes.copy()
 
-                    if (v, u) in self.edgedata:
-                        self.edgedata[u, v].update(self.edgedata[v, u])
-                        del self.edgedata[v, u]
+                    if u != v:
+                        if (v, u) in self.edgedata:
+                            self.edgedata[u, v].update(self.edgedata[v, u])
+                            del self.edgedata[v, u]
 
-                    self.edgedata[v, u] = self.edgedata[u, v]
+                        self.edgedata[v, u] = self.edgedata[u, v]
 
                 if data:
                     yield u, v, self.edgedata[u, v]
