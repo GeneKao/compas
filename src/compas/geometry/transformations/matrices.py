@@ -266,6 +266,7 @@ def matrix_from_axis_and_angle(axis, angle, point=None, rtype='list'):
         point = [0.0, 0.0, 0.0]
 
     axis = list(axis)
+
     if length_vector(axis):
         axis = normalize_vector(axis)
 
