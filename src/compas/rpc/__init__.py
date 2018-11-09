@@ -10,7 +10,7 @@ class RPCClientError(Exception):
     pass
 
 
-from .client import *
+from .proxy import *
 from .server import *
 from .service import *
 

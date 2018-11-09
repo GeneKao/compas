@@ -4,6 +4,7 @@ from __future__ import division
 
 import os
 import json
+import importlib
 
 try:
     from cStringIO import StringIO
@@ -21,6 +22,9 @@ except ImportError:
 import pstats
 import traceback
 
+from compas.utilities import DataEncoder
+from compas.utilities import DataDecoder
+
 
 __all__ = ['Service']
 
@@ -28,27 +32,59 @@ __all__ = ['Service']
 class Service(object):
 
     def _dispatch(self, name, args):
+        odict = {
+            'data'    : None,
+            'error'   : None,
+            'profile' : None
+        }
+
+        parts = name.split('.')
+
+        functionname = parts[-1]
+
+        if len(parts) > 1:
+            modulename = ".".join(parts[:-1])
+            module = importlib.import_module(modulename)
+        else:
+            module = self
+
         try:
-            method = getattr(self, name)
+            function = getattr(module, functionname)
         except AttributeError:
-            return 'The requested method is not part of the API: {0}.'.format(name)
+            odict['error'] = "This function is not part of the API: {0}".format(functionname)
+        else:
+            try:
+                idict = json.loads(args[0], cls=DataDecoder)
+            except (IndexError, TypeError):
+                odict['error'] = (
+                    "API methods require a single JSON encoded dictionary as input.\n"
+                    "For example: input = json.dumps({'param_1': 1, 'param_2': [2, 3]})")
+            else:
+                self._call(function, idict, odict)
+
+        return json.dumps(odict, cls=DataEncoder)
+
+    def _call(self, function, idict, odict):
+        args = idict['args']
+        kwargs = idict['kwargs']
 
         try:
-            idict = json.loads(args[0])
-        except (IndexError, TypeError):
-            return 'API methods require a single JSON encoded dictionary as input. For example: input = json.dumps({\'param_1\': 1, \'param_2\': [2, 3]})'
+            data = function(*args, **kwargs)
+        except:
+            odict['error'] = traceback.format_exc()
+        else:
+            odict['data'] = data
 
-        odict = self._call_wrapped(method, idict)
-
-        return json.dumps(odict)
-
-    def _call_wrapped(self, method, idict):
-        odict = {}
+    def _call_wrapped(self, method, idict, odict):
+        args = idict['args']
+        kwargs = odict['kwargs']
 
         try:
             profile = cProfile.Profile()
             profile.enable()
-            data = method(idict)
+
+            data = function(*args, **kwargs)
+
             profile.disable()
             stream = cStringIO.StringIO()
             stats = pstats.Stats(profile, stream=stream)
@@ -56,15 +92,10 @@ class Service(object):
             stats.sort_stats(1)
             stats.print_stats(20)
         except:
-            odict['data']       = data
-            odict['error']      = traceback.format_exc()
-            odict['profile']    = None
+            odict['error'] = traceback.format_exc()
         else:
-            odict['data']       = data
-            odict['error']      = None
-            odict['profile']    = stream.getvalue()
-
-        return odict
+            odict['data']    = data
+            odict['profile'] = stream.getvalue()
 
 
 # ==============================================================================
