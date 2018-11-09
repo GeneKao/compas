@@ -160,16 +160,15 @@ from .coercing import *
 from .colors import *
 from .datetime_ import *
 from .decorators import *
+from .download import *
 from .encoders import *
 from .itertools_ import *
 from .maps import *
 from .mixing import *
 from .names import *
 from .profiling import *
-from .remote import *
 from .sorting import *
 from .xfunc import *
-from .xscript import *
 from .functions import *
 
 __all__ = [name for name in dir() if not name.startswith('_')]

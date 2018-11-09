@@ -318,7 +318,6 @@ from .xforms import *
 
 from .bbox import *
 from .bestfit import *
-from .boolean import *
 from .hull import *
 from .interpolation import *
 from .isolines import *

@@ -3,6 +3,7 @@ from __future__ import absolute_import
 from __future__ import division
 
 from compas.numerical import pca_numpy
+
 from compas.geometry import local_coords_numpy
 from compas.geometry import global_coords_numpy
 

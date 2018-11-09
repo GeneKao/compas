@@ -62,15 +62,15 @@ def mesh_fd_numpy(mesh):
     xyz, q, f, l, r = fd_numpy(vertices, edges, fixed, q, loads)
     for key, attr in mesh.vertices(True):
         index = key_index[key]
-        attr['x'] = xyz[index][0]
-        attr['y'] = xyz[index][1]
-        attr['z'] = xyz[index][2]
-        attr['rx'] = r[index][0]
-        attr['ry'] = r[index][1]
-        attr['rz'] = r[index][2]
+        attr['x'] = float(xyz[index][0])
+        attr['y'] = float(xyz[index][1])
+        attr['z'] = float(xyz[index][2])
+        attr['rx'] = float(r[index][0])
+        attr['ry'] = float(r[index][1])
+        attr['rz'] = float(r[index][2])
     for index, (u, v, attr) in enumerate(mesh.edges(True)):
-        attr['f'] = f[index][0]
-        attr['l'] = l[index][0]
+        attr['f'] = float(f[index][0])
+        attr['l'] = float(l[index][0])
 
 
 def fd_numpy(vertices, edges, fixed, q, loads, **kwargs):
@@ -210,28 +210,27 @@ if __name__ == '__main__':
     from compas.plotters import MeshPlotter
     from compas.utilities import i_to_rgb
 
-    mesh = Mesh.from_obj(compas.get('faces.obj'))
+    mesh = Mesh.from_obj(compas.get('faces_big.obj'))
 
     mesh.update_default_vertex_attributes({'is_fixed': False, 'px': 0.0, 'py': 0.0, 'pz': 0.0})
     mesh.update_default_edge_attributes({'q': 1.0})
 
-    for key, attr in mesh.vertices(True):
-        attr['is_fixed'] = mesh.vertex_degree(key) == 2
+    mesh.set_vertices_attribute('is_fixed', True, keys=mesh.vertices_where({'vertex_degree': 2}))
 
-    plotter = MeshPlotter(mesh, figsize=(10, 7))
+    # plotter = MeshPlotter(mesh, figsize=(10, 7))
 
-    plotter.draw_as_lines(color='#cccccc', width=0.5)
+    # plotter.draw_as_lines(color='#cccccc', width=0.5)
 
-    network_fd_numpy(mesh)
+    mesh_fd_numpy(mesh)
 
-    zmax = max(mesh.get_vertices_attribute('z'))
-    fmax = max(mesh.get_edges_attribute('f'))
+    # zmax = max(mesh.get_vertices_attribute('z'))
+    # fmax = max(mesh.get_edges_attribute('f'))
 
-    plotter.draw_vertices()
-    plotter.draw_faces()
-    plotter.draw_edges(
-        width={(u, v): 10 * attr['f'] / fmax for u, v, attr in mesh.edges(True)},
-        color={(u, v): i_to_rgb(attr['f'] / fmax) for u, v, attr in mesh.edges(True)},
-    )
+    # plotter.draw_vertices()
+    # plotter.draw_faces()
+    # plotter.draw_edges(
+    #     width={(u, v): 10 * attr['f'] / fmax for u, v, attr in mesh.edges(True)},
+    #     color={(u, v): i_to_rgb(attr['f'] / fmax) for u, v, attr in mesh.edges(True)},
+    # )
 
-    plotter.show()
+    # plotter.show()

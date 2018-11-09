@@ -116,10 +116,11 @@ Utilities
 """
 from __future__ import print_function, division, absolute_import
 
-from .linalg import *
-from .matrices import *
-from .operators import *
 from .utilities import *
+from .matrices import *
+
+from .linalg import *
+from .operators import *
 
 from .descent import *
 from .devo import *

@@ -3,9 +3,7 @@ from __future__ import division
 from __future__ import print_function
 
 from copy import deepcopy
-
-from compas.geometry import norm_vectors
-from compas.topology import adjacency_from_edges
+from math import sqrt
 
 
 __all__ = ['dr']
@@ -17,6 +15,22 @@ K = [
     [0.5, 0.0, 0.5],
     [1.0, 0.0, 0.0, 1.0],
 ]
+
+
+def norm_vector(vector):
+    return sqrt(sum(axis ** 2 for axis in vector))
+
+
+def norm_vectors(vectors):
+    return [norm_vector(vector) for vector in vectors]
+
+
+def adjacency_from_edges(edges):
+    adj = {}
+    for i, j in iter(edges):
+        adj.setdefault(i, []).append(j)
+        adj.setdefault(j, []).append(i)
+    return adj
 
 
 class Coeff():

@@ -109,6 +109,5 @@ from .combinatorics import *
 from .duality import *
 from .orientation import *
 from .planarity import *
-from .connectivity import *
 
 __all__ = [name for name in dir() if not name.startswith('_')]
