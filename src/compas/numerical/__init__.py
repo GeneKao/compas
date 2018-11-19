@@ -32,7 +32,7 @@ Solvers
 
 .. autosummary::
     :toctree: generated/
-    :nosignatures:
+    :nosignatures
 
     descent
     devo_numpy
