@@ -16,6 +16,7 @@ from compas.geometry.basic import cross_vectors
 from compas.geometry.basic import cross_vectors_xy
 from compas.geometry.basic import vector_from_points
 from compas.geometry.basic import scale_vector
+
 from compas.geometry.distance import distance_point_point
 
 
