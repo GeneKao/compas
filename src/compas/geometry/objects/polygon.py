@@ -5,7 +5,7 @@ from __future__ import division
 from compas.geometry.basic import cross_vectors
 
 from compas.geometry.average import centroid_points
-from compas.geometry.average import center_of_mass_polygon
+from compas.geometry.average import centroid_polygon
 
 from compas.geometry.size import area_polygon
 
@@ -102,7 +102,7 @@ class Polygon(object):
     @property
     def center(self):
         """Point: The center (of mass) of the polygon."""
-        return Point(* center_of_mass_polygon(self.points))
+        return Point(* centroid_polygon(self.points))
 
     @property
     def normal(self):

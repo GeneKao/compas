@@ -3,7 +3,7 @@ from __future__ import absolute_import
 from __future__ import division
 
 from compas.geometry import centroid_points
-from compas.geometry import center_of_mass_polygon
+from compas.geometry import centroid_polygon
 from compas.geometry import area_polygon
 
 
@@ -160,7 +160,7 @@ def mesh_smooth_centerofmass(mesh, fixed=None, kmax=100, damping=0.5, callback=N
 
             x, y, z = key_xyz[key]
 
-            cx, cy, cz = center_of_mass_polygon([key_xyz[nbr] for nbr in mesh.vertex_neighbors(key)])
+            cx, cy, cz = centroid_polygon([key_xyz[nbr] for nbr in mesh.vertex_neighbors(key)])
 
             attr['x'] += damping * (cx - x)
             attr['y'] += damping * (cy - y)
