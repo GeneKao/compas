@@ -12,6 +12,22 @@ Using C/C++ code
 .. Example: Force Density Method
 .. Example: Laplacian editing
 
+.. disclaimer: only works properly with callbacks and live updating in CPython
+
+.. provide "compiler"
+.. provide entry point to library writers
+
+.. show how to add a _cpp version of an algorithm
+
+.. use with Rhino
+.. use with Blender
+.. use with Grasshopper
+
+.. compiler flags
+.. cross-platfrom compiler instructions
+
+
+
 Summary
 =======
 
@@ -158,8 +174,8 @@ to something like this:
     import compas
     from compas.datastructures import Mesh
     from compas.plotters import MeshPlotter
-    from compas.interop.core.cpp.xdarray import Array1D
-    from compas.interop.core.cpp.xdarray import Array2D
+    from compas.interop.cpp import Array1D
+    from compas.interop.cpp import Array2D
 
     # get the C++ smoothing library
 
@@ -186,8 +202,8 @@ to something like this:
     # ...
 
     # ==============================================================================
-
     # make a plotter for visualisation
+    # ==============================================================================
 
     plotter = MeshPlotter(mesh, figsize=(10, 7))
 
@@ -224,8 +240,6 @@ to something like this:
         # ...
 
     # ==============================================================================
-
-    # ==============================================================================
     # set the argument types for the smoothing function
     # and call it with C-compatible data
     # ==============================================================================
@@ -233,8 +247,6 @@ to something like this:
     smoothing.smooth_centroid.argtypes = [...]
 
     smoothing.smooth_centroid(...)
-
-    # ==============================================================================
 
 
 C-compatible types and data
@@ -275,17 +287,13 @@ Converting the callback is also quite straightforward:
 To simplify the construction of C-compatible types, and C-compatible data,
 there are a few helper classes in :mod:`compas.interop`:
 
-* :class:`compas.interop.core.cpp.xdarray.Array1D`
-* :class:`compas.interop.core.cpp.xdarray.Array2D`
-* :class:`compas.interop.core.cpp.xdarray.Array3D`
+* :class:`compas.interop.cpp.Array1D`
+* :class:`compas.interop.cpp.Array2D`
+* :class:`compas.interop.cpp.Array3D`
 
 With these helpers, the code for the conversion becomes:
 
 .. code-block:: python
-
-    # ==============================================================================
-    # convert the python data to C-compatible types
-    # ==============================================================================
 
     c_nbrs       = Array1D(nbrs, 'int')
     c_fixed      = Array1D(fixed, 'int')
@@ -293,18 +301,11 @@ With these helpers, the code for the conversion becomes:
     c_neighbours = Array2D(neighbours, 'int')
     c_callback   = ctypes.CFUNCTYPE(None, ctypes.c_int)
 
-    # ==============================================================================
-
 
 Then we let the smoothing function what it can expect in terms of types by setting
 the argument types of the callable:
 
 .. code-block:: python
-
-    # ==============================================================================
-    # set the argument types for the smoothing function
-    # and call it with C-compatible data
-    # ==============================================================================
 
     smoothing.smooth_centroid.argtypes = [
         c_int,
@@ -326,8 +327,6 @@ the argument types of the callable:
         c_callback(wrapper)
     )
 
-    # ==============================================================================
-
 
 The last step is to define the functionality of the callback.
 The goal is to visualise the changing geometry
@@ -335,10 +334,6 @@ and to change the location of the fixed points
 during the smoothing process; in C++, but from Python.
 
 .. code-block:: python
-
-    # ==============================================================================
-    # define the callback function
-    # ==============================================================================
 
     def callback(k):
         print(k)
@@ -361,8 +356,6 @@ during the smoothing process; in C++, but from Python.
             attr['y'] = xyz[key][1]
             attr['z'] = xyz[key][2]
 
-    # ==============================================================================
-
 
 The result
 ==========
@@ -380,17 +373,23 @@ Putting it all together, we get the following script. Simply copy-paste it and r
     from compas.interop.core.cpp.xdarray import Array2D
 
 
+    # ==============================================================================
     # get the C++ smoothing library
+    # ==============================================================================
 
     smoothing = ctypes.cdll.LoadLibrary('smoothing.so')
 
 
+    # ==============================================================================
     # make a mesh
+    # ==============================================================================
 
     mesh = Mesh.from_obj('https://u.nu/faces')
 
 
+    # ==============================================================================
     # extract the required data for smoothing
+    # ==============================================================================
 
     vertices   = mesh.get_vertices_attributes('xyz')
     adjacency  = [mesh.vertex_neighbours(key) for key in mesh.vertices()]
@@ -401,7 +400,9 @@ Putting it all together, we get the following script. Simply copy-paste it and r
     kmax       = 50
 
 
+    # ==============================================================================
     # convert the python data to C-compatible types
+    # ==============================================================================
 
     c_nbrs       = Array1D(nbrs, 'int')
     c_fixed      = Array1D(fixed, 'int')
@@ -410,7 +411,9 @@ Putting it all together, we get the following script. Simply copy-paste it and r
     c_callback   = CFUNCTYPE(None, c_int)
 
 
+    # ==============================================================================
     # make a plotter for visualisation
+    # ==============================================================================
 
     plotter = MeshPlotter(mesh, figsize=(10, 7))
 
@@ -437,7 +440,9 @@ Putting it all together, we get the following script. Simply copy-paste it and r
     plotter.update(pause=0.5)
 
 
+    # ==============================================================================
     # define the callback function
+    # ==============================================================================
 
     def callback(k):
         print(k)
@@ -461,8 +466,10 @@ Putting it all together, we get the following script. Simply copy-paste it and r
             attr['z'] = xyz[key][2]
 
 
+    # ==============================================================================
     # set the argument types for the smoothing function
     # and call it with C-compatible data
+    # ==============================================================================
 
     smoothing.smooth_centroid.argtypes = [
         c_int,
