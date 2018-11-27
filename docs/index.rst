@@ -12,6 +12,7 @@ The main library of COMPAS
    examples
    tutorial
    api
+   notes
    contributions
    citing
    license
