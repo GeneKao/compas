@@ -9,10 +9,11 @@ The main library of COMPAS
    overview
    gettingstarted
    environments
-   examples
    tutorial
-   api
+   examples
+   reference
    notes
    contributions
+   devguide
    citing
    license

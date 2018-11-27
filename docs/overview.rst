@@ -5,6 +5,7 @@ Overview
 The main library of the **COMPAS** framework consists of a core package (:mod:`compas`)
 and several additional packages for integration of the core into CAD software
 (:mod:`compas_rhino`, :mod:`compas_ghpython`, :mod:`compas_blender`).
+
 The core package defines all *real* functionality.
 The CAD packages simply provide a unified framework for processing,
 visualising and interacting with datastructures and geometrical objects, and for
@@ -15,7 +16,7 @@ Core functionality
 ==================
 
 To deal with the different academic backgrounds, programming skills, and computational
-experience of its users, **COMPAS** is implemented primarily in Python and designed
+experience of its users, **COMPAS** is implemented primarily in (C)Python and designed
 to be entirely independent of the functionality of CAD software. As a result, it
 can be used on different platforms and in combination with external software and
 libraries, and at the same time take advantage of the various scientific and non-scientific
