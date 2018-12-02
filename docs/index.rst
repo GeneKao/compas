@@ -13,7 +13,5 @@ The main library of COMPAS
    examples
    reference
    notes
-   contributions
-   devguide
    citing
    license

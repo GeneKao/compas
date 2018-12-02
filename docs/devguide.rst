@@ -10,7 +10,7 @@ Developer Guide
 This guide provides basic information about setting up a development environment
 and writing code for the **COMPAS** framework.
 
-For instructions on how to submit contributions, see `Contributions <https://compas-dev.github.io/main/contributions.html>`_
+For instructions on how to submit contributions, see `Contributing <https://compas-dev.github.io/main/contributing.html>`_
 
 
 Installation

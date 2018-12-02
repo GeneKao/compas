@@ -28,7 +28,7 @@ CAD-based ecosystem.
 CAD integration
 ===============
 
-In the context of this framework CAD tools are obviously indispensible
+In the context of this framework, CAD tools are obviously indispensible
 tools to construct and manipulate geometry, apply constraints interactively, make
 user interfaces, or even just to use as viewer for running scripts. The CAD helper
 packages (:mod:`compas_rhino`, :mod:`compas_ghpython`, :mod:`compas_blender`) provide
