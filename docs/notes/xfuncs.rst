@@ -2,6 +2,13 @@
 CPython in Rhino
 ********************************************************************************
 
+.. warning::
+
+    Using `XFuncs` adds significant overhead per call.
+    Therefore, it is recommended to only use `XFuncs` for running expensive functionality, when the added overhead is not important.
+    For frequent calls to fast procedures, consider using `Remote Procedure Calls <https://compas-dev.github.io/main/notes/remote.html>`_.
+
+
 Rhino runs Python scripts using IronPython 2.7.
 This is great because it provides access to the .NET framework.
 However, this also means that many (C)Python libraries are not available.

@@ -25,9 +25,7 @@ To verify your setup, start Python from the command line and run the following:
     >>> import compas_blender
     >>> import compas_ghpython
 
-Optionally, you can also install from source.
-Check the `Developer Guide <https://compas-dev.github.io/main/devguide.html>`_ for more info.
-To install the *bleeding edge version* directly from the GitHub repo
+Optionally, you can also install from a downloaded source folder, or directly from the GitHub repo
 
 ::
 
